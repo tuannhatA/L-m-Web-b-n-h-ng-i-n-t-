@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cửa hàng điện tử</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Cửa hàng điện tử</h1>
+        <nav>
+            <a href="#home">Trang chủ</a>
+            <a href="#products">Sản phẩm</a>
+            <a href="#cart">Giỏ hàng (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section id="products">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="product" data-name="Điện thoại" data-price="5000000">
+            <h3>Điện thoại</h3>
+            <p>Giá: 5000000 Đ</p>
+            <button onclick="addToCart('Điện thoại', 5000000)">Thêm vào giỏ</button>
+        </div>
+        <div class="product" data-name="Laptop" data-price="10000000">
+            <h3>Laptop</h3>
+            <p>Giá: 10000000 Đ</p>
+            <button onclick="addToCart('Laptop', 10000000)">Thêm vào giỏ</button>
+        </div>
+        <div class="product" data-name="Tai nghe" data-price="100000">
+            <h3>Tai nghe</h3>
+            <p>Giá: 100000 Đ</p>
+            <button onclick="addToCart('Tai nghe', 100000)">Thêm vào giỏ</button>
+        </div>
+    </section>
+
+    <section id="cart">
+        <h2>Giỏ hàng</h2>
+        <ul id="cart-items">
+            <p>Giỏ hàng đang trống.</p>
+        </ul>
+        <p id="total">Tổng cộng: 0 Đ</p>
+    </section>
+
+    <script src="script.js"></script>
 </body>
+<link rel="stylesheet" href="index.css">
+<script src="index.js"></script>
 </html>
