@@ -1,38 +1,55 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cửa hàng điện tử</title>
+    <title>Trang Chủ</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Cửa hàng điện tử</h1>
-        <nav>
-            <a href="#home">Trang chủ</a>
-            <a href="cart.html">Giỏ hàng (<span id="cart-count">0</span>)</a>
-        </nav>
+        <div class="container">
+            <h1 class="logo">Laptop Shop</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Trang chủ</a></li>
+                    <li><a href="cart.html" >Giỏ hàng</a></li>
+                    <li id="user-status"></li>
+                    <!-- <li><a href="login.html">Đăng nhập</a></li> -->
+                </ul>
+            </nav>
+            
+        </div>
     </header>
 
-    <section id="products">
-        <h2>Sản phẩm nổi bật</h2>
-        <div class="product" data-name="Điện thoại" data-price="500">
-            <h3>Điện thoại</h3>
-            <p>Giá: 500 USD</p>
-            <button onclick="addToCart('Điện thoại', 500)">Thêm vào giỏ</button>
-        </div>
-        <div class="product" data-name="Laptop" data-price="1000">
-            <h3>Laptop</h3>
-            <p>Giá: 1000 USD</p>
-            <button onclick="addToCart('Laptop', 1000)">Thêm vào giỏ</button>
-        </div>
-        <div class="product" data-name="Tai nghe" data-price="100">
-            <h3>Tai nghe</h3>
-            <p>Giá: 100 USD</p>
-            <button onclick="addToCart('Tai nghe', 100)">Thêm vào giỏ</button>
+    <!-- Danh sách sản phẩm -->
+    <section class="products">
+        <div class="container">
+            <h2>Sản phẩm nổi bật</h2>
+            <div class="product-list">
+                <!-- Sản phẩm -->
+                <div class="product">
+                    <h3>Laptop Gaming</h3>
+                    <p>Giá: 20,000,000 VND</p>
+                    <button class="btn add-to-cart">Thêm vào giỏ</button>
+                </div>
+                <div class="product">
+                    <h3>Laptop Văn Phòng</h3>
+                    <p>Giá: 15,000,000 VND</p>
+                    <button class="btn add-to-cart">Thêm vào giỏ</button>
+                </div>
+                <!-- Thêm sản phẩm -->
+            </div>
         </div>
     </section>
-    <link rel="stylesheet" href="index.css">
+
+    <footer>
+        <div class="container">
+            <p>&circledS; 2024 Laptop Shop.</p>
+        </div>
+    </footer>
+
     <script src="index.js"></script>
 </body>
 </html>
