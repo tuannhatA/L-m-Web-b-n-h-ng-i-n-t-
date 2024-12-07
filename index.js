@@ -32,3 +32,36 @@ if (loggedInUser) {
 } else {
     userStatus.innerHTML = '<a href="login.html">Đăng nhập</a>';
 }
+
+fetch('https://fakestoreapi.com/products/category/electronics')
+    .then(res => res.json())
+    .then(json => console.log(json))
+
+document.addEventListener("DOMContentLoaded", () => {
+    const productList = document.querySelector(".product-list");
+
+    // Fetch products from Fake Store API
+    fetch("https://fakestoreapi.com/products/category/electronics")
+        .then((response) => response.json())
+        .then((products) => {
+            // Loop through all products and display them
+            products.forEach((product) => {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+
+                productDiv.innerHTML = `
+                        <h3>${product.title}</h3>
+                        <img src="${product.image}" alt="${product.title}" style="max-width: 150px;">
+                        <p>Giá: ${product.price} USD</p>
+                        <button class="btn add-to-cart">Thêm vào giỏ</button>
+                    `;
+
+                productList.appendChild(productDiv);
+            });
+        })
+        .catch((error) => {
+            console.error("Failed to fetch products:", error);
+            productList.innerHTML = "<p>Could not load products.</p>";
+        });
+});
+
