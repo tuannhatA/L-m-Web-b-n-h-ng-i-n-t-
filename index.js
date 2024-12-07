@@ -1,67 +1,52 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+const API_URL = "https://fakestoreapi.com/products";
+const category = "electronics";
+const productList = document.querySelector(".product-list");
 
-document.querySelectorAll('.add-to-cart').forEach((button, index) => {
-    button.addEventListener('click', () => {
-        const product = {
-            name: button.parentElement.querySelector('h3').innerText,
-            price: parseInt(button.parentElement.querySelector('p').innerText.replace(/[^\d]/g, '')),
-            quantity: 1
-        };
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        const existingProduct = cart.find(item => item.name === product.name);
-        if (existingProduct) {
-            existingProduct.quantity += 1;
-        } else {
-            cart.push(product);
-        }
+function fetchLaptops() {
+    const url = `${API_URL}/category/${category}`;
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => displayLaptops(data))
+        .catch((error) => console.error("Error fetching laptops:", error));
+}
+function displayLaptops(laptops) {
+    productList.innerHTML = "";
+    laptops.forEach((laptop) => {
+        const productDiv = document.createElement("div");
+        productDiv.classList.add("product");
 
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert('Đã thêm vào giỏ hàng!');
+        productDiv.innerHTML = `
+            <h3>${laptop.title}</h3>
+            <img src="${laptop.image}" alt="${laptop.title}" style="max-width: 150px;">
+            <p>Giá: ${laptop.price * 10000} VND </p>
+            <button class="btn add-to-cart">Add to cart</button>
+        `;
+
+        productList.appendChild(productDiv);
     });
-});
-// Kiểm tra trạng thái đăng nhập
-const userStatus = document.getElementById('user-status');
-const loggedInUser = localStorage.getItem('loggedInUser');
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", () => {
+            const parent = button.parentElement;
+            const product = {
+                name: parent.querySelector("h3").innerText,
+                price: parseFloat(parent.querySelector("p").innerText.replace(/[^\d.]/g, "")),
+                quantity: 1,
+            };
 
-if (loggedInUser) {
-    userStatus.innerHTML = `${loggedInUser} <button id="logout-btn">Đăng xuất</button>`;
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        localStorage.removeItem('loggedInUser');
-        window.location.reload();
+            const existingProduct = cart.find((item) => item.name === product.name);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Đã thêm vào giỏ hàng!");
+        });
     });
-} else {
-    userStatus.innerHTML = '<a href="login.html">Đăng nhập</a>';
 }
 
-fetch('https://fakestoreapi.com/products/category/electronics')
-    .then(res => res.json())
-    .then(json => console.log(json))
-
-document.addEventListener("DOMContentLoaded", () => {
-    const productList = document.querySelector(".product-list");
-
-    // Fetch products from Fake Store API
-    fetch("https://fakestoreapi.com/products/category/electronics")
-        .then((response) => response.json())
-        .then((products) => {
-            // Loop through all products and display them
-            products.forEach((product) => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("product");
-
-                productDiv.innerHTML = `
-                        <h3>${product.title}</h3>
-                        <img src="${product.image}" alt="${product.title}" style="max-width: 150px;">
-                        <p>Giá: ${product.price} USD</p>
-                        <button class="btn add-to-cart">Thêm vào giỏ</button>
-                    `;
-
-                productList.appendChild(productDiv);
-            });
-        })
-        .catch((error) => {
-            console.error("Failed to fetch products:", error);
-            productList.innerHTML = "<p>Could not load products.</p>";
-        });
-});
+document.addEventListener("DOMContentLoaded", fetchLaptops);
 
