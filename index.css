@@ -106,6 +106,15 @@ header {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.product .btn:hover {
+    background: #CCCCCC;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 /* Trạng thái người dùng */
 #user-status {
     margin-left: auto;
