@@ -77,10 +77,10 @@ a {
 }
 
 .product-list {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .product {
