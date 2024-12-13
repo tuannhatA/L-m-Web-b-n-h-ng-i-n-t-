@@ -4,15 +4,20 @@ body {
     margin: 0;
     padding: 0;
 }
+#container{
+    display: flex;
+    align-items: center;
+}
 
-.container {
+.container{
     width: 90%;
     margin: 0 auto;
 }
+
 /* Header */
 header {
     background-color: #333;
-    color: white;
+    color: rgb(221, 95, 12);
     padding: 15px 0;
     display: flex;
     justify-content: space-between;
@@ -21,6 +26,11 @@ header {
 
 .logo {
     font-size: 24px;
+    margin-right:20px;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px red;
+    color: rgb(221, 95, 12);
+    text-decoration: none;
 }
 
 .nav-links {
@@ -34,9 +44,10 @@ header {
     margin-left: 20px;
 }
 
-.nav-links a {
-    color: white;
+a{
+    color: rgb(0, 0, 0);
     text-decoration: none;
+    font-size: 16px;
 }
 
 .nav-links .active {
@@ -44,6 +55,12 @@ header {
     font-weight: bold;
 }
 /* Form */
+#home{
+    font-weight: bold;
+    text-shadow: 3px 3px 3px red;
+    color: rgb(221, 95, 12);
+}
+
 .form-section {
     margin: 50px auto;
     width: 100%;
@@ -52,6 +69,9 @@ header {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#reg{
+    font-weight: bold;
 }
 
 .form-section h2 {
